@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} [%-20t] [%-5p] %-30c{2} (Line::%L) %3x - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+		</filter>
+	</appender>
+
+	<appender name="APPL"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/customization/customization.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} [%-20t] [%-5p] %-30c{2} (Line::%L) %3x - %m%n%n" />
+		</layout>
+	</appender>
+
+	<appender name="APPL_ERROR"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="c:/customization/customizationError.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} [%-20t] [%-5p] %-30c{2} (Line::%L) %3x - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+		</filter>
+	</appender>
+
+	<category name="com.project.customization" additivity="true">
+		<priority value="DEBUG" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="APPL" />
+		<appender-ref ref="APPL_ERROR" />
+	</category>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="APPL" />
+		<appender-ref ref="APPL_ERROR" />
+	</root>
+
+</log4j:configuration>

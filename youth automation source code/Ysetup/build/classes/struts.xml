@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+
+
+	<constant name="struts.devMode" value="true" />
+	<package name="struts-app" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+
+		<interceptors>
+			<interceptor name="authentication"
+				class="com.iyouth.common.interceptor.LoginAuthenticationInterceptor" />
+			<interceptor-stack name="iyouthStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authentication" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="iyouthStack" />
+		<global-results>
+			<result name="sessionNotFound" type="redirect">login.action
+			</result>
+			<result name="globalloadmainpage" type="redirect">loadMainPage.action
+			</result>
+
+		</global-results>
+	</package>
+
+	<include file="struts-base.xml" />
+	<include file="struts-Customization.xml" />
+	<include file="admission.xml" />
+	<include file="fees.xml" />
+	<include file="callmanagement.xml" />
+	<!-- Add packages here -->
+</struts>

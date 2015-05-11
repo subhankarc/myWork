@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="admission" namespace="/" extends="struts-app">
+
+
+		<!--Start of login-logout actions -->
+		<action name="formsellingload"
+			class="com.iyouth.common.admission.action.FormSellingAction"
+			method="loadFormSelling">
+			<result name="loadpage">/pages/admission/formSelling.jsp</result>
+			
+		</action>
+		
+		<action name="formsellingsave"
+			class="com.iyouth.common.admission.action.FormSellingAction"
+			method="saveFormSelling">
+			<result name="successsave">/pages/admission/admissionSuccess.jsp</result>
+			<result name="inputerror">/pages/admission/formSelling.jsp</result>
+		</action>
+		
+		<action name="formselling"
+			class="com.iyouth.common.admission.action.FormSellingAction"
+			method="sellFormAction">
+			<result name="successformsale">/pages/admission/formSelling.jsp</result>
+			<result name="inputerror">/pages/admission/formSelling.jsp</result>
+		</action>
+		
+		<action name="searchSellFormAction"
+			class="com.iyouth.common.admission.action.FormSellingAction"
+			method="searchSellFormAction">
+			<result name="successformsale">/pages/admission/formSelling_search_temppage.jsp</result>
+			<result name="inputerror">/pages/admission/formSelling.jsp</result>
+		</action>
+		
+		<action name="quickadmissionload"
+			class="com.iyouth.common.admission.action.QuickAdmissionAction"
+			method="loadQuickAdmissionPage">
+			<result name="loadpage">/pages/admission/quickAdmission.jsp</result>
+		</action>
+		
+		<action name="quickadmissionloaddata"
+			class="com.iyouth.common.admission.action.QuickAdmissionAction"
+			method="loadQuickAdmissionData">
+			<result name="loadpage">/pages/admission/quickAdmission.jsp</result>
+		</action>
+		
+		<action name="quickAdmission"
+			class="com.iyouth.common.admission.action.QuickAdmissionAction"
+			method="doQuickAdmission">
+			<result name="successaddmission">/pages/admission/quickAdmission.jsp</result>
+			<result name="inputerror">/pages/admission/quickAdmission.jsp</result>
+		</action>
+		
+		
+		<action name="detailadmissionload"
+			class="com.iyouth.common.admission.action.DetailAdmissionAction"
+			method="loadDetailAdmissionPage">
+			<result name="loadpage">/pages/admission/detailAdmission.jsp</result>
+		</action>
+		
+		<action name="detailadmissionloaddata"
+			class="com.iyouth.common.admission.action.DetailAdmissionAction"
+			method="loadDetailAdmissionData">
+			<result name="loadpage">/pages/admission/detailAdmission.jsp</result>
+		</action>
+		
+		<action name="detailAdmission"
+			class="com.iyouth.common.admission.action.DetailAdmissionAction"
+			method="doDetailAdmission">
+			<result name="successaddmission">/pages/admission/detailAdmission.jsp</result>
+			<result name="inputerror">/pages/admission/detailAdmission.jsp</result>
+		</action>
+	
+
+	</package>
+</struts>

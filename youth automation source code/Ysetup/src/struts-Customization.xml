@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="Customization" namespace="/" extends="struts-app">
+
+
+		<!--Start of login-logout actions -->
+		<action name="login"
+			class="com.iyouth.common.login.action.LoginCustomizationAction"
+			method="login">
+			<result name="loginreq">/pages/web/login1.jsp</result>
+
+		</action>
+
+		<action name="actionLogin"
+			class="com.iyouth.common.login.action.LoginCustomizationAction"
+			method="actionLogin">
+			<result name="success" type="redirect"> loadMainPage.action</result>
+			<result name="failure" type="dispatcher">
+			<param name="location">/pages/web/login1.jsp</param>
+			</result>
+
+
+		</action>
+
+		<action name="reLogin"
+			class="com.iyouth.common.login.action.LoginCustomizationAction"
+			method="reLogin">
+			<result name="loginreq" type="redirect">login.action</result>
+		</action>
+
+		<action name="logout"
+			class="com.iyouth.common.login.action.LogOutCustomizationAction"
+			method="logoutAction">
+			<result name="logoutreq" type="redirect">login.action</result>
+
+		</action>
+		<!--End of login-logout actions -->
+		<!--Start of other actions -->
+		<action name="loadMainPage"
+			class="com.iyouth.common.login.action.MainPageLoadAction" method="loadMainPageAction">
+			<!-- <result name="success"> /jsp/web/welcome.jsp</result> -->
+			<result name="success"> /pages/web/welcome.jsp</result>
+			<result name="failure" type="redirect">login.action</result>
+		</action>
+
+		<action name="flowControlAction"
+			class="com.iyouth.common.login.action.MainPageLoadAction" method="pageFlowAction">
+			<result name="page1" type="redirect">formsellingload.action</result>
+			<result name="page2" type="redirect">quickadmissionload.action</result>
+			<result name="page3" type="redirect">detailadmissionload.action</result>
+			<result name="page4" type="redirect">feescollectionload.action</result>
+			<result name="page5" type="redirect">callmanagementload.action</result>
+			<result name="failure" type="redirect">login.action</result>
+		</action>
+
+ 
+
+		<!--Start of other actions -->
+	</package>
+</struts>

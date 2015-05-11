@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" namespace="/" extends="struts-default">
+
+
+		<action name="feescollectionload"
+			class="com.iyouth.common.fees.action.FeesCollectionAction" method="loadFeesCollection">
+			<result name="loadpage">/pages/fees/feesCollection.jsp</result>
+		</action>
+
+		<action name="search"
+			class="com.iyouth.common.fees.action.FeesCollectionAction" method="loadStudentData">
+			<result name="loaddata">/pages/fees/feesCollection.jsp</result>
+		</action>
+
+		<action name="fetchfeesdetails"
+			class="com.iyouth.common.fees.action.FeesCollectionAction" method="loadStudentFeesData">
+			<result name="loaddata">/pages/fees/feesCollection_temppage.jsp</result>
+		</action>
+
+		<action name="payfees"
+			class="com.iyouth.common.fees.action.FeesCollectionAction" method="enterStudentFeesData">
+			<result name="loaddata">/pages/fees/feesCollectionBill.jsp</result>
+		</action>
+	</package>
+</struts>
