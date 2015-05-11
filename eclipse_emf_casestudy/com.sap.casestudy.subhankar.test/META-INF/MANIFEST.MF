@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test
+Bundle-SymbolicName: com.sap.casestudy.subhankar.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.casestudy.subhankar.test.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.sap.casestudy.subhankar.model;bundle-version="1.0.0",
+ com.sap.casestudy.subhankar.persistence;bundle-version="1.0.0",
+ org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

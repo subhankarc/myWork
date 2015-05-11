@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="casestudymodel"
+    nsURI="http://casestudy/subhankar" nsPrefix="casestudymodel">
+  <eClassifiers xsi:type="ecore:EClass" name="IAdtObject" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="technicalName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" lowerBound="1"
+        eType="#//Documentation" containment="true" eOpposite="#//Documentation/containingObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Documentation" eSuperTypes="#//IAdtObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shortText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containingObject" lowerBound="1"
+        eType="#//IAdtObject" eOpposite="#//IAdtObject/documentation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAdtMainObject" abstract="true" interface="true"
+      eSuperTypes="#//IAdtObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileExtension" eType="#//FileExtensionEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FileExtensionEnum">
+    <eLiterals name="NAMESPACE_EXTENSION"/>
+    <eLiterals name="DEPLOYMENT_UNIT_EXTENSION" value="1" literal="du"/>
+    <eLiterals name="PROCESS_COMPONENT_EXTENSION" value="2" literal="pc"/>
+    <eLiterals name="BUSINESS_OBJECT_EXTENSION" value="3" literal="bo"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProcessComponentCategoryEnum">
+    <eLiterals name="APPLICATION_PROCESS_COMPONENT"/>
+    <eLiterals name="THIRD_PARTY_PROCESS_COMPONENT" value="1"/>
+    <eLiterals name="PROCESS_COMPONENT_AT_BUSINESS_PARTNER" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BusinessObjectCategoryEnum">
+    <eLiterals name="META_OBJECT"/>
+    <eLiterals name="TECHNICAL_OBJECT" value="1"/>
+    <eLiterals name="MASTER_DATA_OBJECT" value="2"/>
+    <eLiterals name="MASS_DATA_RUN_OBJECT" value="3"/>
+    <eLiterals name="BUSINESS_CONFIGURATION_OBJECT" value="4" literal="BUSINESS_CONFIGURATION_OBJECT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BuObjectNodeCategoryEnum">
+    <eLiterals name="TRANSFORMATION_NODE"/>
+    <eLiterals name="STANDARD_NODE" value="1"/>
+    <eLiterals name="TEXT_NODE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BusinessObject" eSuperTypes="#//IAdtMainObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerInterface" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectCategory" eType="#//BusinessObjectCategoryEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processComponent" lowerBound="1"
+        eType="#//ProcessComponent" eOpposite="#//ProcessComponent/businessObjects"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootNode" lowerBound="1"
+        eType="#//RootBusinessObjectNode" eOpposite="#//RootBusinessObjectNode/businessObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessComponent" eSuperTypes="#//IAdtMainObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentUnit" lowerBound="1"
+        eType="#//DeploymentUnit" eOpposite="#//DeploymentUnit/processComponents"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameKeyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameKeyNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//ProcessComponentCategoryEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjects" upperBound="-1"
+        eType="#//BusinessObject" containment="true" eOpposite="#//BusinessObject/processComponent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeploymentUnit" eSuperTypes="#//IAdtMainObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abbreviatonName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="semanticName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processComponents" upperBound="-1"
+        eType="#//ProcessComponent" containment="true" eOpposite="#//ProcessComponent/deploymentUnit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BusinessObjectNode" eSuperTypes="#//IAdtObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//BuObjectNodeCategoryEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childNodes" upperBound="-1"
+        eType="#//BusinessObjectNode" containment="true" eOpposite="#//BusinessObjectNode/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
+        eType="#//BusinessObjectNode" eOpposite="#//BusinessObjectNode/childNodes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RootBusinessObjectNode" eSuperTypes="#//BusinessObjectNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="businessObject" lowerBound="1"
+        eType="#//BusinessObject" eOpposite="#//BusinessObject/rootNode"/>
+  </eClassifiers>
+</ecore:EPackage>

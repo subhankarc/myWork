@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+  <?eclipse version="3.4"?> 
+<plugin>
+- <extension point="org.eclipse.ui.perspectives">
+  <perspective name="MTS Designer" class="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective" id="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective" icon="icons/mts_Perspective.gif" /> 
+  </extension>
+- <extension point="org.eclipse.ui.newWizards">
+  <category id="com.sap.casestudy.subhankar.ui.mycategory" name="MTS" /> 
+  <wizard
+        category="com.sap.casestudy.subhankar.ui.mycategory"
+        class="com.sap.casestudy.subhankar.ui.wizard.NewMTSProjectWizard"
+        finalPerspective="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective"
+        icon="icons/abap_project.gif"
+        id="com.sap.casestudy.subhankar.ui.newprojectwizard"
+        name="MTS Project"/>
+  <wizard
+        category="com.sap.casestudy.subhankar.ui.mycategory"
+        class="com.sap.casestudy.subhankar.ui.wizard.CreateDUWizard"
+        finalPerspective="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective"
+        icon="icons/deployment_unit.gif"
+        id="com.sap.casestudy.subhankar.ui.deploymentunit"
+        name="Deployment Unit">
+  </wizard> 
+  <wizard
+        category="com.sap.casestudy.subhankar.ui.mycategory"
+        class="com.sap.casestudy.subhankar.ui.wizard.CreatePCWizard"
+        finalPerspective="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective"
+        icon="icons/process_component.gif"
+        id="com.sap.casestudy.subhankar.ui.processcomponent"
+        name="Process Component">
+  </wizard> 
+  <wizard
+        category="com.sap.casestudy.subhankar.ui.mycategory"
+        class="com.sap.casestudy.subhankar.ui.wizard.CreateBOWizard"
+        finalPerspective="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective"
+        icon="icons/business_object.gif"
+        id="com.sap.casestudy.subhankar.ui.businessobject"
+        name="Business Object">
+  </wizard> 
+  </extension>
+- <extension id="MyNature" name="My Nature" point="org.eclipse.core.resources.natures">
+- <runtime>
+  <run class="com.sap.casestudy.subhankar.ui.nature.MTSProjectNature" /> 
+  </runtime>
+  </extension>
+- <extension point="org.eclipse.ui.perspectiveExtensions">
+- <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+  <perspectiveShortcut id="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective" /> 
+  </perspectiveExtension>
+- <perspectiveExtension targetID="com.sap.casestudy.subhankar.ui.perspective.MTSPerspective">
+  <view id="com.sap.casestudy.subhankar.ui.views.mts_explorer_view" minimized="false" ratio="0.25f" relationship="left" relative="org.eclipse.ui.editorss" /> 
+  </perspectiveExtension>
+  </extension>
+- <extension point="org.eclipse.ui.views">
+  <category id="com.sap.casestudy.subhankar.ui.mts_designer" name="MTS Designer" /> 
+  <view category="com.sap.casestudy.subhankar.ui.mts_designer" class="com.sap.casestudy.subhankar.ui.views.MTSExplorerView" icon="icons/mts_explorer.gif" id="com.sap.casestudy.subhankar.ui.views.mts_explorer_view" name="MTS Explorer" restorable="true" /> 
+  </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <category
+           id="com.sap.casestudy.subhankar.ui.mts_commands"
+           name="MTS Commands">
+     </category>
+     <command
+           categoryId="com.sap.casestudy.subhankar.ui.mts_commands"
+           id="com.sap.casestudy.subhankar.ui.create_deployment_unit"
+           name="Create Deployment Unit">
+     </command>
+     <command
+           categoryId="com.sap.casestudy.subhankar.ui.mts_commands"
+           id="com.sap.casestudy.subhankar.ui.create_process_component"
+           name="Create Process Component">
+     </command>
+     <command
+           categoryId="com.sap.casestudy.subhankar.ui.mts_commands"
+           id="com.sap.casestudy.subhankar.ui.create_business_object"
+           name="Create Business Object">
+     </command>
+     <command
+           categoryId="com.sap.casestudy.subhankar.ui.mts_commands"
+           id="com.sap.casestudy.subhankar.ui.create_project"
+           name="Create Project">
+     </command>
+     <command
+           categoryId="com.sap.casestudy.subhankar.ui.mts_commands"
+           id="com.sap.casestudy.subhankar.ui.delete_node"
+           name="Delete Node">
+     </command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="com.sap.casestudy.subhankar.ui.commands.CreateDeploymentUnitHandler"
+           commandId="com.sap.casestudy.subhankar.ui.create_deployment_unit">
+     </handler>
+     <handler
+           class="com.sap.casestudy.subhankar.ui.commands.CreateBusinessObjectHandler"
+           commandId="com.sap.casestudy.subhankar.ui.create_business_object">
+     </handler>
+     <handler
+           class="com.sap.casestudy.subhankar.ui.commands.CreateProcessComponentHandler"
+           commandId="com.sap.casestudy.subhankar.ui.create_process_component">
+     </handler>
+     <handler
+           class="com.sap.casestudy.subhankar.ui.commands.CreateProjectHandler"
+           commandId="com.sap.casestudy.subhankar.ui.create_project">
+     </handler>
+     <handler
+           class="com.sap.casestudy.subhankar.ui.commands.DeleteNodeHandler"
+           commandId="com.sap.casestudy.subhankar.ui.delete_node">
+     </handler>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           allPopups="false"
+           locationURI="popup:com.sap.casestudy.subhankar.ui.views.mts_explorer_view">
+        <command
+              commandId="com.sap.casestudy.subhankar.ui.create_deployment_unit"
+              icon="icons/deployment_unit.gif"
+              label="Create Deployment Unit"
+              style="push"
+              tooltip="Create a Deployment Unit">
+        </command>
+        <command
+              commandId="com.sap.casestudy.subhankar.ui.create_business_object"
+              icon="icons/business_object.gif"
+              label="Create Business Object"
+              style="push">
+        </command>
+        <command
+              commandId="com.sap.casestudy.subhankar.ui.create_process_component"
+              icon="icons/process_component.gif"
+              label="Create Process Component"
+              style="push">
+        </command>
+        <command
+              commandId="com.sap.casestudy.subhankar.ui.create_project"
+              icon="icons/abap_project.gif"
+              label="Create a new Project"
+              style="push">
+        </command>
+        <command
+              commandId="com.sap.casestudy.subhankar.ui.delete_node"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+        </command>
+     </menuContribution>
+  </extension>
+  <extension
+        point="org.eclipse.ui.editors">
+     <editor
+           class="com.sap.casestudy.ui.editor.BusinessObjectEditor"
+           default="false"
+           extensions="bo"
+           icon="icons/business_object.gif"
+           id="com.sap.casestudy.subhankar.ui.business_object_editor"
+           name="Business Object Editor">
+     </editor>
+  </extension>
+  </plugin>
